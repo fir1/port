@@ -1,0 +1,98 @@
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  gocritic:
+    disabled-checks:
+      - hugeParam
+      - unnamedResult
+      - rangeValCopy
+    enabled-tags:
+      - diagnostic
+      - opinionated
+      - performance
+      - style
+  goimports:
+    local-prefixes: github.com/ayoisaiah/f2
+  gomnd:
+    settings:
+      mnd:
+        # don't include the "operation" and "assign" checks
+        checks: argument,case,condition,return
+  govet:
+    check-shadowing: true
+  nolintlint:
+    require-explanation: true
+    require-specific: true
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - errorlint
+    - exportloopref
+    - exhaustive
+    - goconst
+    - godot
+    - gocritic
+    - gofmt
+    - goimports
+#    - gocyclo // TODO Do we need this rule?
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - misspell
+    - nakedret
+    - nolintlint
+    - prealloc
+    - predeclared
+    - staticcheck
+    - stylecheck
+    - thelper
+    - tparallel
+    - typecheck
+    - unconvert
+    - unparam
+    - whitespace
+
+issues:
+  new: true
+  fix: true
+  exclude:
+    - 'declaration of "(err|ctx)" shadows declaration at'
+    - "don't use an underscore in package name"
+    - "should not use underscores in package names"
+  exclude-rules:
+    - path: _test\.go # disable some linters for test files
+      linters:
+        - gocyclo
+        - gosec
+        - dupl
+    - linters:
+        - gosec
+      text: "weak cryptographic primitive"
+    - linters:
+        - stylecheck
+      text: "error strings should not be capitalized"
+
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+output:
+  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
+  format: colored-line-number
+
+  # print linter name in the end of issue text, default is true
+  print-linter-name: true
+
+run:
+  issues-exit-code: 1
+  timeout: 2m
