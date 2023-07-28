@@ -48,11 +48,14 @@ To run the tests, use the command:
 The application currently provides the following endpoints:
 1. ``GET /health``: This endpoint checks the health of the server.
 
-2. ``POST /port``: This endpoint creates ports and saves them into the database using the default `ports.json` file. 
+2. ``POST /ports``: This endpoint creates ports and saves them into the database using the default `ports.json` file. 
 The streaming-based approach is used to efficiently handle large JSON files.
 
 3. ``POST /ports/from-file``: The service will parse the file and save the ports into the database. This API also handles very large files as chunks, ensuring efficient processing.
 The request `Content-Type: multipart/form-data` to send files to server.
+
+4. ``GET /ports``: Retrieves a list of ports that have been saved in the database.
+
 
 ## Features
 - The API server utilizes caching to improve response times. Currently, memory caching from the github.com/allegro/bigcache/v3 library is used, but it can be replaced with other caching solutions, such as redis, by implementing the `CacheClientInterface` in `pkg/cache/cache.go`. The use of interfaces allows for easy swapping of caching implementations without changing the application details.
