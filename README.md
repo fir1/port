@@ -11,6 +11,22 @@ To run the program locally, use the following command:
 go run cmd/*.go 
 ````
 
+**IMPORTANT**
+
+Before running the program locally, ensure that you provide the correct absolute path to the `data` folder, which contains the `ports.json` file.
+
+There are two ways to set the environment variable for the data folder:
+
+1. Pass the environment variable during runtime:
+``DATA_DIR=/Users/fir/Desktop/port/data go run cmd/*.go``</br>Note that `/Users/fir/Desktop/port/data` should be replaced with the absolute path to your `data` folder.
+
+2. Create an `.env` file in the root of the project and add the following content:
+``DATA_DIR=/Users/fir/Desktop/port/data``</br> Replace `/Users/fir/Desktop/port/data` with the absolute path to your `data` folder. Then, run the command: ``go run cmd/*.go``
+</br> The server will start with the provided environment variable from the `.env` file.
+
+Remember to use the appropriate absolute path for the `data` folder on your system when setting the environment variable.
+
+
 ## How to run linters
 To ensure code quality and consistency, it is recommended to use a linter for the project. 
 Before running the linter, make sure you have it installed on your computer. 
